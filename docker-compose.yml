@@ -2,9 +2,9 @@ services:
   fgt-upgrade:
     image: fgt-upgrade-review:latest
     ports:
-      - "8001:8000"
+      - "${HOST_PORT:-8001}:8000"
     environment:
-      - DB_PATH=/app/data/fgt_upgrade.db
+      - DB_PATH=${DB_PATH:-/app/data/fgt_upgrade.db}
     volumes:
       - fgt-data:/app/data
       - fgt-uploads:/app/uploads
