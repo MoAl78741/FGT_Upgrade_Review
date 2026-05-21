@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Theme CSS variables  (RGB channel format → Tailwind opacity modifiers work)
+───────────────────────────────────────────────────────────────────────────── */
+
+/* DARK THEMES */
+
+:root,
+[data-theme="obsidian"] {
+  --accent:         245 130 31;
+  --accent-dark:    234 111 10;
+  --surface:        12  31  42;
+  --surface-border: 24  50  69;
+  --surface-deep:   7   20  29;
+  --bg-base:        #030c10;
+}
+
+[data-theme="midnight"] {
+  --accent:         129 140 248;
+  --accent-dark:    99  102 241;
+  --surface:        15  15  46;
+  --surface-border: 30  30  69;
+  --surface-deep:   7   7   24;
+  --bg-base:        #04040f;
+}
+
+[data-theme="carbon"] {
+  --accent:         34  211 238;
+  --accent-dark:    6   182 212;
+  --surface:        17  17  21;
+  --surface-border: 30  30  36;
+  --surface-deep:   9   9   11;
+  --bg-base:        #060607;
+}
+
+/* LIGHT THEMES */
+
+[data-theme="fortinet"] {
+  /* Accent: professional blue matching docs.fortinet.com */
+  --accent:         11  108 180;   /* #0b6cb4 */
+  --accent-dark:    9   87  146;   /* #095792 */
+  /* Cards / surfaces */
+  --surface:        255 255 255;
+  --surface-border: 208 220 232;
+  --surface-deep:   244 247 250;
+  --bg-base:        #f0f4f8;
+  /* Light-mode text */
+  --lm-text:        #0f172a;
+  --lm-text-dim:    #1e293b;
+  --lm-text-muted:  #475569;
+  --lm-text-xmuted: #94a3b8;
+  --lm-input-bg:    #ffffff;
+  --lm-badge-bg:    #eef2f7;
+  --lm-border-sub:  #d0dce8;
+  --lm-border:      #b8cfe2;
+  --lm-toggle-off:  #b8cfe2;
+  --lm-row-hover:   rgba(11,108,180,0.04);
+  --lm-row-stripe:  #f8fafc;
+  /* Fortinet-docs table header: dark navy matching docs.fortinet.com */
+  --tbl-header-bg:  #1c3a5c;
+  --tbl-header-txt: #e8f0f6;
+}
+
+[data-theme="arctic"] {
+  --accent:         14  165 233;
+  --accent-dark:    2   132 199;
+  --surface:        255 255 255;
+  --surface-border: 186 220 244;
+  --surface-deep:   240 249 255;
+  --bg-base:        #ddf0fc;
+  --lm-text:        #0c1a22;
+  --lm-text-dim:    #2d5f7a;
+  --lm-text-muted:  #5a8fa8;
+  --lm-text-xmuted: #8ab7cc;
+  --lm-input-bg:    #f7fbff;
+  --lm-badge-bg:    #e0f0fc;
+  --lm-border-sub:  #bae0f4;
+  --lm-border:      #93cce8;
+  --lm-toggle-off:  #93cce8;
+  --lm-row-hover:   rgba(14,165,233,0.05);
+  --lm-row-stripe:  #f0f9ff;
+  --tbl-header-bg:  #0e6ea8;
+  --tbl-header-txt: #f0f9ff;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Dark theme backgrounds — subtle atmospheric depth
+───────────────────────────────────────────────────────────────────────────── */
+
+:root body,
+[data-theme="obsidian"] body {
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(245, 130, 31, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(11, 108, 180, 0.04) 0%, transparent 55%);
+}
+
+[data-theme="midnight"] body {
+  background-image:
+    radial-gradient(ellipse at 25% 0%, rgba(129, 140, 248, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+}
+
+[data-theme="carbon"] body {
+  background-image:
+    radial-gradient(ellipse at 60% 0%, rgba(34, 211, 238, 0.07) 0%, transparent 55%);
+}
+
+[data-theme="fortinet"] body,
+[data-theme="arctic"]   body {
+  background-image: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Light themes — text on light backgrounds must be dark
+───────────────────────────────────────────────────────────────────────────── */
+
+[data-theme="fortinet"],
+[data-theme="arctic"] {
+  color-scheme: light;
+}
+
+/* Primary text — text-white / text-gray-100/200 → near-black */
+[data-theme="fortinet"] .text-white,
+[data-theme="fortinet"] .text-gray-100,
+[data-theme="fortinet"] .text-gray-200,
+[data-theme="arctic"]   .text-white,
+[data-theme="arctic"]   .text-gray-100,
+[data-theme="arctic"]   .text-gray-200  { color: #0f172a !important; }
+
+/* Secondary text */
+[data-theme="fortinet"] .text-gray-300,
+[data-theme="arctic"]   .text-gray-300  { color: #334155 !important; }
+
+/* Muted text */
+[data-theme="fortinet"] .text-gray-400,
+[data-theme="fortinet"] .text-gray-500,
+[data-theme="arctic"]   .text-gray-400,
+[data-theme="arctic"]   .text-gray-500  { color: #475569 !important; }
+
+/* Hint text */
+[data-theme="fortinet"] .text-gray-600,
+[data-theme="arctic"]   .text-gray-600  { color: #64748b !important; }
+
+/* Saturated accent colors → darker variants for legibility on white */
+[data-theme="fortinet"] .text-sky-400,
+[data-theme="arctic"]   .text-sky-400     { color: #0369a1 !important; }
+[data-theme="fortinet"] .text-emerald-400,
+[data-theme="arctic"]   .text-emerald-400 { color: #047857 !important; }
+[data-theme="fortinet"] .text-amber-400,
+[data-theme="arctic"]   .text-amber-400   { color: #92400e !important; }
+[data-theme="fortinet"] .text-red-400,
+[data-theme="arctic"]   .text-red-400     { color: #b91c1c !important; }
+[data-theme="fortinet"] .text-blue-400,
+[data-theme="arctic"]   .text-blue-400    { color: #1d4ed8 !important; }
+[data-theme="fortinet"] .text-violet-400,
+[data-theme="arctic"]   .text-violet-400  { color: #5b21b6 !important; }
+[data-theme="fortinet"] .text-amber-300,
+[data-theme="arctic"]   .text-amber-300   { color: #92400e !important; }
+[data-theme="fortinet"] .text-emerald-300,
+[data-theme="arctic"]   .text-emerald-300 { color: #065f46 !important; }
+[data-theme="fortinet"] .text-red-300,
+[data-theme="arctic"]   .text-red-300     { color: #991b1b !important; }
+[data-theme="fortinet"] .text-blue-300,
+[data-theme="arctic"]   .text-blue-300    { color: #1e40af !important; }
+[data-theme="fortinet"] .text-orange-400,
+[data-theme="arctic"]   .text-orange-400  { color: #c2410c !important; }
+[data-theme="fortinet"] .text-orange-300,
+[data-theme="arctic"]   .text-orange-300  { color: #c2410c !important; }
+
+/* ── Restore WHITE text on elements with dark backgrounds ── */
+
+/* Header: always dark navy → all text white */
+[data-theme="fortinet"] header,
+[data-theme="arctic"]   header {
+  background-color: #1c2d3a !important;
+  border-color: #243a4a !important;
+}
+[data-theme="fortinet"] header *,
+[data-theme="arctic"]   header * { color: #0b6cb4 !important; }
+[data-theme="fortinet"] header .text-gray-400,
+[data-theme="arctic"]   header .text-gray-400 { color: #8aabb8 !important; }
+[data-theme="fortinet"] header .text-gray-500,
+[data-theme="arctic"]   header .text-gray-500 { color: #6e909f !important; }
+
+/* Table headers: dark navy → white text */
+[data-theme="fortinet"] thead tr,
+[data-theme="arctic"]   thead tr {
+  background-color: var(--tbl-header-bg) !important;
+  border-bottom-color: var(--tbl-header-bg) !important;
+}
+[data-theme="fortinet"] thead th,
+[data-theme="arctic"]   thead th { color: #ffffff !important; }
+
+/* Colored-background buttons → white text */
+[data-theme="fortinet"] .bg-brand-500,
+[data-theme="fortinet"] .bg-emerald-700,
+[data-theme="fortinet"] .bg-emerald-600,
+[data-theme="arctic"]   .bg-brand-500,
+[data-theme="arctic"]   .bg-emerald-700,
+[data-theme="arctic"]   .bg-emerald-600 { color: #ffffff !important; }
+
+/* ── Backgrounds ── */
+
+[data-theme="fortinet"] .bg-gray-950,
+[data-theme="arctic"]   .bg-gray-950  { background-color: var(--bg-base)       !important; }
+[data-theme="fortinet"] .bg-gray-900,
+[data-theme="arctic"]   .bg-gray-900  { background-color: var(--lm-input-bg)   !important; }
+[data-theme="fortinet"] .bg-gray-800,
+[data-theme="arctic"]   .bg-gray-800  { background-color: var(--lm-badge-bg)   !important; }
+[data-theme="fortinet"] .bg-gray-700,
+[data-theme="arctic"]   .bg-gray-700  { background-color: var(--lm-toggle-off) !important; }
+
+/* Status badge backgrounds */
+[data-theme="fortinet"] .bg-blue-900\/30,
+[data-theme="arctic"]   .bg-blue-900\/30    { background-color: #dbeafe !important; }
+[data-theme="fortinet"] .bg-emerald-900\/30,
+[data-theme="arctic"]   .bg-emerald-900\/30 { background-color: #d1fae5 !important; }
+[data-theme="fortinet"] .bg-red-900\/30,
+[data-theme="arctic"]   .bg-red-900\/30     { background-color: #fee2e2 !important; }
+[data-theme="fortinet"] .bg-amber-900\/10,
+[data-theme="arctic"]   .bg-amber-900\/10   { background-color: #fffbeb !important; }
+[data-theme="fortinet"] .bg-amber-900\/20,
+[data-theme="arctic"]   .bg-amber-900\/20   { background-color: #fef3c7 !important; }
+[data-theme="fortinet"] .bg-red-900\/20,
+[data-theme="arctic"]   .bg-red-900\/20     { background-color: #fef2f2 !important; }
+[data-theme="fortinet"] .bg-red-900\/40,
+[data-theme="arctic"]   .bg-red-900\/40     { background-color: #fee2e2 !important; }
+[data-theme="fortinet"] .bg-orange-900\/40,
+[data-theme="arctic"]   .bg-orange-900\/40  { background-color: #ffedd5 !important; }
+[data-theme="fortinet"] .bg-sky-900\/40,
+[data-theme="arctic"]   .bg-sky-900\/40     { background-color: #e0f2fe !important; }
+[data-theme="fortinet"] .bg-amber-900\/40,
+[data-theme="arctic"]   .bg-amber-900\/40   { background-color: #fef3c7 !important; }
+[data-theme="fortinet"] .bg-violet-900\/40,
+[data-theme="arctic"]   .bg-violet-900\/40  { background-color: #ede9fe !important; }
+[data-theme="fortinet"] .bg-emerald-900\/40,
+[data-theme="arctic"]   .bg-emerald-900\/40 { background-color: #d1fae5 !important; }
+
+/* Alternating table rows */
+[data-theme="fortinet"] tbody tr:nth-child(even),
+[data-theme="arctic"]   tbody tr:nth-child(even) { background-color: var(--lm-row-stripe); }
+
+/* ── Borders ── */
+
+[data-theme="fortinet"] .border-gray-800,
+[data-theme="arctic"]   .border-gray-800  { border-color: var(--lm-border-sub) !important; }
+[data-theme="fortinet"] .border-gray-700,
+[data-theme="arctic"]   .border-gray-700  { border-color: var(--lm-border)     !important; }
+[data-theme="fortinet"] .border-dashed,
+[data-theme="arctic"]   .border-dashed    { border-color: var(--lm-border)     !important; }
+[data-theme="fortinet"] .border-red-800\/40,
+[data-theme="arctic"]   .border-red-800\/40   { border-color: #fca5a5 !important; }
+[data-theme="fortinet"] .border-amber-800\/30,
+[data-theme="arctic"]   .border-amber-800\/30 { border-color: #fcd34d !important; }
+[data-theme="fortinet"] .border-amber-700\/40,
+[data-theme="arctic"]   .border-amber-700\/40 { border-color: #f59e0b !important; }
+[data-theme="fortinet"] .border-red-800\/30,
+[data-theme="arctic"]   .border-red-800\/30   { border-color: #fca5a5 !important; }
+[data-theme="fortinet"] .border-navy-700,
+[data-theme="arctic"]   .border-navy-700      { border-color: var(--lm-border) !important; }
+
+/* ── Row hover + scrollbar ── */
+
+[data-theme="fortinet"] .hover\:bg-gray-900\/30:hover,
+[data-theme="arctic"]   .hover\:bg-gray-900\/30:hover {
+  background-color: var(--lm-row-hover) !important;
+}
+[data-theme="fortinet"] ::-webkit-scrollbar-thumb,
+[data-theme="arctic"]   ::-webkit-scrollbar-thumb { background-color: var(--lm-border) !important; }
+[data-theme="fortinet"] ::-webkit-scrollbar-track,
+[data-theme="arctic"]   ::-webkit-scrollbar-track  { background-color: var(--bg-base)  !important; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Fortinet theme — docs.fortinet.com fidelity tweaks
+   Make navy-800 cards look white and crisp (not translucent blue-tinted)
+───────────────────────────────────────────────────────────────────────────── */
+
+[data-theme="fortinet"] .bg-navy-800,
+[data-theme="fortinet"] .bg-navy-900 {
+  background-color: #ffffff !important;
+}
+[data-theme="fortinet"] .border-navy-700 { border-color: #d0dce8 !important; }
+
+/* Keep sticky selection footer visually dark even in fortinet theme */
+[data-theme="fortinet"] .bg-navy-800\/95 {
+  background-color: rgba(28, 45, 58, 0.95) !important;
+}
+[data-theme="fortinet"] .bg-navy-800\/95 *,
+[data-theme="arctic"]   .bg-navy-800\/95 * { color: #ffffff !important; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Base
+───────────────────────────────────────────────────────────────────────────── */
+
+@layer base {
+  body {
+    background-color: var(--bg-base);
+    @apply text-gray-100 antialiased;
+    font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04';
+    letter-spacing: -0.01em;
+    transition: background-color 0.2s ease;
+  }
+
+  /* Monospace elements inherit JetBrains Mono via Tailwind font-mono */
+
+  /* Better focus rings */
+  input:focus-visible,
+  button:focus-visible {
+    outline: 2px solid rgb(var(--accent) / 0.6);
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar        { @apply w-1.5; }
+  ::-webkit-scrollbar-track  { background-color: var(--bg-base); }
+  ::-webkit-scrollbar-thumb  { @apply bg-gray-700 rounded-full; }
+}

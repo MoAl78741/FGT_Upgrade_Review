@@ -1,0 +1,21 @@
+services:
+  fgt-upgrade:
+    image: fgt-upgrade-review:latest
+    ports:
+      - "8001:8000"
+    environment:
+      - DB_PATH=/app/data/fgt_upgrade.db
+    volumes:
+      - fgt-data:/app/data
+      - fgt-uploads:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8000/docs"]
+      interval: 30s
+      timeout: 10s
+      start-period: 15s
+      retries: 3
+
+volumes:
+  fgt-data:
+  fgt-uploads:

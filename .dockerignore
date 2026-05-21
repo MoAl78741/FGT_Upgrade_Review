@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Database (mounted as a volume at runtime)
+fgt_upgrade.db
+
+# Dev / test artifacts
+output/
+data/
+*.json
+test_*.py
+
+# Versioned legacy folders
+v*/
+
+# Git / IDE
+.git/
+.gitignore
+.claude/
+*.md
+CLAUDE.md

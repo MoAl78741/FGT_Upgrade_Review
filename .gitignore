@@ -1,0 +1,42 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.env
+.env.*
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ── Testing ───────────────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Node / Frontend ───────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+*.log
+npm-debug.log*
+
+# ── Runtime data (mount as Docker volumes, never commit) ──────────────────────
+fgt_upgrade.db
+uploads/
+output/
+data/
+
+# ── Large binaries ────────────────────────────────────────────────────────────
+*.pdf
+
+# ── IDE / OS ──────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
