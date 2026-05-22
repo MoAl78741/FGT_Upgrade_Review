@@ -1,5 +1,8 @@
 services:
   fgt-upgrade:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: fgt-upgrade-review:latest
     ports:
       - "${HOST_PORT:-8001}:8000"
