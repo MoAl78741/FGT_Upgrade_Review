@@ -25,14 +25,17 @@ app = FastAPI(
     description="Scrapes Fortinet release notes and serves an interactive upgrade dashboard",
 )
 
+import os
+
+# In production (Docker) the app is accessed from LAN IPs, so allow all origins.
+# Restrict via CORS_ORIGINS env var if needed (comma-separated list).
+_raw_origins = os.environ.get("CORS_ORIGINS", "*")
+_allow_origins = [o.strip() for o in _raw_origins.split(",")] if _raw_origins != "*" else ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",   # Vite dev server
-        "http://localhost:3000",
-        "http://127.0.0.1:5173",
-    ],
-    allow_credentials=True,
+    allow_origins=_allow_origins,
+    allow_credentials=_raw_origins != "*",  # credentials + wildcard is invalid
     allow_methods=["*"],
     allow_headers=["*"],
 )
