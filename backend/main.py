@@ -52,5 +52,5 @@ if _frontend_dist.exists():
     # Catch-all: any path not matched by /api/* or /assets/* returns index.html
     # so React Router handles client-side navigation (including hard refresh on /reports/*)
     @app.get("/{full_path:path}")
-    async def serve_spa(_full_path: str) -> FileResponse:
+    async def serve_spa(full_path: str) -> FileResponse:
         return FileResponse(str(_frontend_dist / "index.html"))
