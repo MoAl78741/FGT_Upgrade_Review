@@ -10,6 +10,11 @@ A web dashboard for reviewing FortiOS release notes across upgrade paths. Scrape
 - Full-text searchable content — all PDF sections extracted as markdown, not images
 - Special notices and upgrade information rendered with proper formatting
 
+## Screenshots
+
+![](img01.png)
+![](img02.png)
+![](img03.png)
 ## Requirements
 
 - Python 3.10+
